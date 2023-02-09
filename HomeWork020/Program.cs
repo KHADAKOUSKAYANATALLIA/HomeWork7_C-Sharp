@@ -39,6 +39,7 @@ int [,] array = new int [m, n];
 
 CreateArray(array);
 PrintArray(array);
+
 Console.WriteLine("На проверку введите позицию элемента в строке массива: "); 
 int a = Convert.ToInt32(Console.ReadLine()); // строка
 Console.WriteLine("На проверку введите позицию элемента в столбце массива: "); 
