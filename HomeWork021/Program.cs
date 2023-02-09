@@ -1,5 +1,4 @@
-﻿/* Задайте двумерный массив из целых чисел. 
-Найдите среднее арифметическое элементов в каждом столбце.
+﻿/* Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 Например, задан массив:
 1 4 7 2   0
 5 9 2 3   1
@@ -13,28 +12,9 @@ int m = Convert.ToInt32(Console.ReadLine()); // строка i
 Console.WriteLine("Введите количество столбцов в массиве: ");
 int n = Convert.ToInt32(Console.ReadLine()); // столбец j
 
-int [,] array = new int [m, n];
+double [,] array = new double [m, n];
 
-void FindAverage(int [,] array)
-{
-    // int average = 0;
-    int sum = 0;
-
-for (int i = 0; i < array.GetLength(0); i++)
-{
-    average = 0;
-
-     for (int j = 0; j < array.GetLength(1); j++)
-        {
-            sum = sum + array[i, j];
-        }
-    average = sum / array.GetLength(1); 
-    Console.WriteLine(average + ", ");// ($"Среднее арифметическое столбца {array[i, j]} равно {average}");    
-    
-}
-}
-
-void CreateArray(int [,] array)
+void CreateArray(double [,] array)
 {
 Random random = new Random();
 
@@ -42,12 +22,34 @@ for (int i = 0; i < array.GetLength(0); i++)
 {
      for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = new Random().Next(0, 10); 
+            array[i, j] = Convert.ToDouble(new Random().Next(0, 10));
         }
 }
 }
 
-void PrintArray(int [,] array)
+void FindAverage(double [,] array)
+{
+    double [] averageNumber = new double [array.GetLength(1)];
+    double sum = 0;
+    double average = 0;
+    
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+        sum = 0;
+     
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            sum += array[i, j];
+            average = sum / array.GetLength(0);                    
+        }
+        averageNumber[j] = average;  
+        
+    Console.WriteLine($"Среднее арифметическое столбца {j}: равно {average.ToString("0.##")}");
+    }
+
+}
+
+void PrintArray(double [,] array)
 {
      for (int i = 0; i < array.GetLength(0); i++) 
      { 
@@ -58,7 +60,6 @@ void PrintArray(int [,] array)
      Console.WriteLine(); }
 }
 
-FindAverage(array);      
 CreateArray(array);
 PrintArray(array);
-
+FindAverage(array);
